@@ -162,6 +162,7 @@ Public Class frmMain
                 Exit Sub
             Else
                 Me.Close()
+                End
             End If
 
             Exit Sub
@@ -183,6 +184,7 @@ Public Class frmMain
                 Exit Sub
             Else
                 Me.Close()
+                End
             End If
 
         End Try
@@ -213,6 +215,8 @@ Public Class frmMain
                 Exit Sub
             Else
                 Me.Close()
+                End
+
             End If
 
         End Try
@@ -220,7 +224,12 @@ Public Class frmMain
         WriteToLog("The process has completed")
 
         ' if this was executed via command line, then close the form
-        If Not startupParameter Is Nothing Then Me.Close() Else MsgBox("Process complete")
+        If Not startupParameter Is Nothing Then
+            Me.Close()
+            End
+        Else
+            MsgBox("Process complete")
+        End If
 
     End Sub
 
@@ -294,11 +303,13 @@ Public Class frmMain
                 Else
                     WriteToLog($"The configuration file is missing, unable to continue.")
                     Me.Close()
+                    End
                 End If
             Else
                 ' something other than RUN was found in the first parameter
                 WriteToLog($"Invalid argument; {startupParameter} was passed.")
                 Me.Close()
+                End
             End If
         Else
             If File.Exists(configFileName) Then
